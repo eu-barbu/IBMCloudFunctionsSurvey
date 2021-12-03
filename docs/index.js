@@ -68,6 +68,7 @@ const survey = {
 
         $(document).on('submit', '#addEntry', function (e) {
             e.preventDefault();
+
             var question1 = parseInt($('#question1 input:radio:checked').val().trim(), 10);
             if (!question1 || question1 < 1 || question1 > 5) {
                 question1 = 0;
@@ -83,6 +84,7 @@ const survey = {
             survey.add(question1, question2, question3)
                 .done(function (result) {
                     loadEntries();
+                    alert("Thank you for your feedback");
                 });
         });
 
