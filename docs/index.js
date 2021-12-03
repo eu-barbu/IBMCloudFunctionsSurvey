@@ -1,7 +1,7 @@
 /**
  * Web application
  */
-const apiUrl = 'https://b0cd66dd.eu-de.apigw.appdomain.cloud/survey';
+const apiUrl = 'https://b0cd66dd.eu-de.apigw.appdomain.cloud/survey/';
 const survey = {
     // retrieve the existing survey entries
     get() {
@@ -13,7 +13,6 @@ const survey = {
     },
     // add a single suervey entry
     add(question1, question2, question3) {
-        console.log(question1, question2, question3)
         return $.ajax({
             type: 'PUT',
             url: `${apiUrl}/entries`,
@@ -37,25 +36,42 @@ const survey = {
 
     // retrieve entries and update the UI
     function loadEntries() {
-        console.log('Loading entries...');
         $('#entries').html('Loading entries...');
         survey.get().done(function(result) {
             if (!result.entries) {
-                return;
+                $('#entries').html('No entries');
             }
+            /*
+            const context = {
+                entries: result.entries,
+            }*/
+
+            var RESULT1 = 0;
+            for (var i in result.entries){
+                RESULT1 += parseInt(result.entries[i].question1, 10);
+            }
+            RESULT1 = RESULT1 / result.entries.length;
+
+            var RESULT2 = 0;
+            for (var i in result.entries){
+                RESULT2 += parseInt(result.entries[i].question2, 10);
+            }
+            RESULT2 = RESULT2 / result.entries.length;
 
             const context = {
-                entries: result.entries
+                entries: result.entries,
+                avgQuestion1: RESULT1,
+                avgQuestionPercent1: RESULT1 * 20,
+                avgQuestion2: RESULT2,
+                avgQuestionPercent2: RESULT2 * 20
             }
             $('#entries').html(entriesTemplate(context));
-        }).error(function(error) {
-            $('#entries').html('No entries');
-            console.log(error);
         });
     }
 
     // intercept the click on the submit button, add the survey entry and
     // reload entries on success
+
     $(document).on('submit', '#addEntry', function(e) {
         e.preventDefault();
         survey.add(
@@ -69,6 +85,7 @@ const survey = {
             console.log(error);
         });
     });
+
 
     $(document).ready(function() {
         prepareTemplates();
