@@ -41,24 +41,12 @@ const survey = {
                     $('#entries').html('No entries');
                 }
 
-                var RESULT1 = 0;
-                for (var i in result.entries) {
-                    RESULT1 += parseInt(result.entries[i].question1, 10);
-                }
-                RESULT1 = Number(RESULT1 / result.entries.length).toFixed(2);
-
-                var RESULT2 = 0;
-                for (var i in result.entries) {
-                    RESULT2 += parseInt(result.entries[i].question2, 10);
-                }
-                RESULT2 = Number(RESULT2 / result.entries.length).toFixed(2);
-
                 const context = {
                     entries: result.entries,
-                    avgQuestion1: RESULT1,
-                    avgQuestionPercent1: RESULT1 * 20,
-                    avgQuestion2: RESULT2,
-                    avgQuestionPercent2: RESULT2 * 20
+                    avgQuestion1: Number(result.avgQuestion1).toFixed(2),
+                    avgQuestionPercent1: Number(result.avgQuestion1 * 20).toFixed(2),
+                    avgQuestion2: Number(result.avgQuestion2).toFixed(2),
+                    avgQuestionPercent2: Number(result.avgQuestion2 * 20).toFixed(2)
                 }
                 $('#entries').html(entriesTemplate(context));
             });
