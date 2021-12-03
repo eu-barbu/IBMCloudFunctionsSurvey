@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <header>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
@@ -28,68 +27,74 @@
 
 
 <section class="bg-light">
-    <div class="container">
-        <div class="row p-3">
-            1. Overall, how would you rate the course?
-            <div class="form-check">
-                <input class="form-check-input" name="question1" type="radio" value="1"/>
-                <label class="form-check-label">Poor</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question1" type="radio" value="2"/>
-                <label class="form-check-label">Fair</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question1" type="radio" value="3"/>
-                <label class="form-check-label">Good</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question1" type="radio" value="4"/>
-                <label class="form-check-label">Very good</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question1" type="radio" value="5"/>
-                <label class="form-check-label">Excellent</label>
+    <form id="addEntry">
+        <div class="container">
+            <div class="row p-3">
+                1. Overall, how would you rate the course?
+                <div id="question1" data-toggle="buttons">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="1"/>
+                        <label class="form-check-label">Poor</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="2"/>
+                        <label class="form-check-label">Fair</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="3"/>
+                        <label class="form-check-label">Good</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="4"/>
+                        <label class="form-check-label">Very good</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="5"/>
+                        <label class="form-check-label">Excellent</label>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row p-3">
-            2. How clearly did the instructor explain the course material?
-            <div class="form-check">
-                <input class="form-check-input" name="question2" type="radio" value="1"/>
-                <label class="form-check-label">Not at all clearly</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question2" type="radio" value="2"/>
-                <label class="form-check-label">Not so clearly</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question2" type="radio" value="3"/>
-                <label class="form-check-label">Somewhat clearly</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question2" type="radio" value="4"/>
-                <label class="form-check-label">Very clearly</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="question2" type="radio" value="5"/>
-                <label class="form-check-label">Extremely clearly</label>
+        <div class="container">
+            <div class="row p-3">
+                2. How clearly did the instructor explain the course material?
+                <div id="question2" data-toggle="buttons">
+                    <div class="form-check">
+                        <input class="form-check-input" name="question2" type="radio" value="1"/>
+                        <label class="form-check-label">Not at all clearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="question2" type="radio" value="2"/>
+                        <label class="form-check-label">Not so clearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="question2" type="radio" value="3"/>
+                        <label class="form-check-label">Somewhat clearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="question2" type="radio" value="4"/>
+                        <label class="form-check-label">Very clearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="question2" type="radio" value="5"/>
+                        <label class="form-check-label">Extremely clearly</label>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row p-3">
-            3. What improvements would you make to this course?
-            <textarea class="form-control" id="question3" rows="3"></textarea>
+        <div class="container">
+            <div class="row p-3">
+                3. What improvements would you make to this course?
+                <textarea class="form-control" id="question3" rows="3"></textarea>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="p-3">
-            <button type="button" class="btn btn-primary btn-block">Submit survey</button>
+        <div class="container">
+            <div class="p-3">
+                <button class="btn btn-primary btn-block">Submit survey</button>
+            </div>
         </div>
-    </div>
+    </form>
 </section>
 
 
@@ -114,7 +119,7 @@
 
         <div class="p-3">
             <p>
-                1. For the question: "Overall, how would you rate the course?", the average rating is: <strong>{{avgQuestion1}}</strong>
+                1. For the question: "Overall, how would you rate the course?", the average rating is: <strong class="text-danger">{{avgQuestion1}}</strong>
             </p>
             <div class="progress col-6">
                 <div class="progress-bar bg-success" role="progressbar" style="width: {{avgQuestionPercent1}}%" aria-valuenow="{{avgQuestionPercent1}}"
@@ -124,7 +129,7 @@
 
         <div class="p-3">
             <p>
-                2. For the question: "How clearly did the instructor explain the course material?", the average rating is: <strong>{{avgQuestion3}}</strong>
+                2. For the question: "How clearly did the instructor explain the course material?", the average rating is: <strong class="text-danger">{{avgQuestion2}}</strong>
             </p>
             <div class="progress col-6">
                 <div class="progress-bar bg-success" role="progressbar" style="width: {{avgQuestionPercent2}}%" aria-valuenow="{{avgQuestionPercent2}}"
@@ -134,11 +139,11 @@
 
         <div class="p-3">
             <p>
-                3. For the question: "What improvements would you make to this course??", people answered: <strong>{{avgQuestion1}}</strong>
+                3. For the question: "What improvements would you make to this course??", people answered:
             </p>
 
             <div>
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered">
                     {{#each entries}}
                     <tr>
                         <td>{{question3}}</td>
